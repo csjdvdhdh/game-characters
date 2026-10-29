@@ -1,12 +1,20 @@
-# Game Characters
+# Character Shooter
 
-Simple browser game featuring three characters:
+لعبة شوتر بالشخصيات الثلاث (Fighter / Girl / Bear) مبنية بـ **Flutter + Flame**.
 
-1. **Fighter** – blue messy hair, tattoos, hand wraps
-2. **Blindfolded Girl** – black lace, gothic style
-3. **Golden Bear** – purple top hat, microphone
+## تشغيل محلي
+```bash
+flutter pub get
+flutter run
+```
+
+## بناء APK
+```bash
+flutter build apk --release
+```
+الـ APK يطلع في:
+`build/app/outputs/flutter-apk/app-release.apk`
 
 ## Auto Build
-Every push to `main` triggers GitHub Actions to build and deploy the game pages.
-
-Open the **Actions** tab after each push to see the build.
+كل push على `main` يشغل GitHub Actions ويبني الـ APK ويرفعه كـ Artifact.
+روح Actions → آخر run → Artifacts → حمل الـ APK.
