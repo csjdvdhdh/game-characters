@@ -1,4 +1,4 @@
-name: Build Game
+name: Build APK
 
 on:
   push:
@@ -12,10 +12,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check files
-        run: |
-          echo "=== files ==="
-          ls -la
-          echo "=== index.html size ==="
-          wc -c index.html
-          echo "Build OK"
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.0"
+          channel: stable
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: character-shooter-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
