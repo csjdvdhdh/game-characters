@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Characters</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,sans-serif;background:#0d0d12;color:#eee;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:2rem}
+  h1{margin-bottom:1.5rem;font-size:1.8rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;max-width:900px;width:100%}
+  .card{background:#1a1a24;border-radius:16px;overflow:hidden;border:1px solid #333;transition:transform .2s}
+  .card:hover{transform:translateY(-6px)}
+  .card img{width:100%;height:260px;object-fit:cover;background:#111}
+  .card .info{padding:1rem}
+  .card h2{font-size:1.2rem;margin-bottom:.4rem}
+  .card p{font-size:.9rem;color:#aaa;line-height:1.4}
+  .badge{display:inline-block;background:#6c5ce7;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:999px;margin-top:.5rem}
+  footer{margin-top:3rem;color:#666;font-size:.8rem}
+</style>
+</head>
+<body>
+  <h1>شخصيات اللعبة</h1>
+  <div class="grid">
+    <div class="card">
+      <div style="height:260px;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;font-size:4rem">🥊</div>
+      <div class="info">
+        <h2>Fighter</h2>
+        <p>شعر أزرق فوضوي، وشم تنين وجمجمة، لفائف يد بيضاء، شورت رمادي. مقاتل في القفص.</p>
+        <span class="badge">Combat</span>
+      </div>
+    </div>
+    <div class="card">
+      <div style="height:260px;background:linear-gradient(135deg,#2d1b2e,#1a0a1a);display:flex;align-items:center;justify-content:center;font-size:4rem">🖤</div>
+      <div class="info">
+        <h2>Blindfolded Girl</h2>
+        <p>شعر أسود بخطوط حمراء، عصابة دانتيل سوداء، طوق دانتيل، وشم على الصدر. طابع قوطي.</p>
+        <span class="badge">Gothic</span>
+      </div>
+    </div>
+    <div class="card">
+      <div style="height:260px;background:linear-gradient(135deg,#3d2b1f,#1a120a);display:flex;align-items:center;justify-content:center;font-size:4rem">🐻</div>
+      <div class="info">
+        <h2>Golden Bear</h2>
+        <p>دب أصفر قديم، قبعة وطوق بنفسجي، مايكروفون في اليد. شخصية مسرح كلاسيكية.</p>
+        <span class="badge">Performer</span>
+      </div>
+    </div>
+  </div>
+  <footer>Auto-built by GitHub Actions • game-characters</footer>
+</body>
+</html>
