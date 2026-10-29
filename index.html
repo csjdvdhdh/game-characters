@@ -6,47 +6,237 @@
 <title>Game Characters</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:system-ui,sans-serif;background:#0d0d12;color:#eee;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:2rem}
-  h1{margin-bottom:1.5rem;font-size:1.8rem}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;max-width:900px;width:100%}
-  .card{background:#1a1a24;border-radius:16px;overflow:hidden;border:1px solid #333;transition:transform .2s}
-  .card:hover{transform:translateY(-6px)}
-  .card img{width:100%;height:260px;object-fit:cover;background:#111}
-  .card .info{padding:1rem}
-  .card h2{font-size:1.2rem;margin-bottom:.4rem}
-  .card p{font-size:.9rem;color:#aaa;line-height:1.4}
-  .badge{display:inline-block;background:#6c5ce7;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:999px;margin-top:.5rem}
-  footer{margin-top:3rem;color:#666;font-size:.8rem}
+  body{font-family:system-ui,sans-serif;background:#0a0a10;color:#eee;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem}
+  h1{margin-bottom:1rem;font-size:1.6rem;letter-spacing:1px}
+  .stage{display:flex;flex-wrap:wrap;gap:1.2rem;justify-content:center;max-width:1100px;width:100%}
+  .char{background:#14141e;border-radius:18px;border:1px solid #2a2a3a;overflow:hidden;width:320px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .char canvas{display:block;width:100%;height:340px;background:#0d0d14}
+  .info{padding:1rem 1.1rem 1.2rem}
+  .info h2{font-size:1.15rem;margin-bottom:.35rem}
+  .info p{font-size:.85rem;color:#9a9ab0;line-height:1.45}
+  .tag{display:inline-block;margin-top:.55rem;padding:3px 10px;border-radius:999px;font-size:.7rem;font-weight:600}
+  .tag.combat{background:#e74c3c33;color:#ff6b6b}
+  .tag.gothic{background:#9b59b633;color:#c39bd3}
+  .tag.performer{background:#f1c40f33;color:#f7dc6f}
+  footer{margin-top:2.5rem;color:#555;font-size:.75rem}
 </style>
 </head>
 <body>
   <h1>شخصيات اللعبة</h1>
-  <div class="grid">
-    <div class="card">
-      <div style="height:260px;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;font-size:4rem">🥊</div>
+  <div class="stage">
+    <div class="char">
+      <canvas id="c1" width="320" height="340"></canvas>
       <div class="info">
         <h2>Fighter</h2>
         <p>شعر أزرق فوضوي، وشم تنين وجمجمة، لفائف يد بيضاء، شورت رمادي. مقاتل في القفص.</p>
-        <span class="badge">Combat</span>
+        <span class="tag combat">Combat</span>
       </div>
     </div>
-    <div class="card">
-      <div style="height:260px;background:linear-gradient(135deg,#2d1b2e,#1a0a1a);display:flex;align-items:center;justify-content:center;font-size:4rem">🖤</div>
+    <div class="char">
+      <canvas id="c2" width="320" height="340"></canvas>
       <div class="info">
         <h2>Blindfolded Girl</h2>
-        <p>شعر أسود بخطوط حمراء، عصابة دانتيل سوداء، طوق دانتيل، وشم على الصدر. طابع قوطي.</p>
-        <span class="badge">Gothic</span>
+        <p>شعر أسود بخطوط حمراء، عصابة دانتيل، طوق دانتيل، وشم على الصدر. طابع قوطي.</p>
+        <span class="tag gothic">Gothic</span>
       </div>
     </div>
-    <div class="card">
-      <div style="height:260px;background:linear-gradient(135deg,#3d2b1f,#1a120a);display:flex;align-items:center;justify-content:center;font-size:4rem">🐻</div>
+    <div class="char">
+      <canvas id="c3" width="320" height="340"></canvas>
       <div class="info">
         <h2>Golden Bear</h2>
         <p>دب أصفر قديم، قبعة وطوق بنفسجي، مايكروفون في اليد. شخصية مسرح كلاسيكية.</p>
-        <span class="badge">Performer</span>
+        <span class="tag performer">Performer</span>
       </div>
     </div>
   </div>
   <footer>Auto-built by GitHub Actions • game-characters</footer>
+
+<script>
+// ---------- Fighter ----------
+(function(){
+  const c=document.getElementById('c1'),x=c.getContext('2d');
+  const W=320,H=340;
+  // bg cage
+  x.fillStyle='#0c0c14';x.fillRect(0,0,W,H);
+  x.strokeStyle='#2a2a3a';x.lineWidth=3;
+  for(let i=0;i<8;i++){x.beginPath();x.moveTo(20+i*40,0);x.lineTo(20+i*40,H);x.stroke();}
+  for(let i=0;i<6;i++){x.beginPath();x.moveTo(0,30+i*55);x.lineTo(W,30+i*55);x.stroke();}
+  // body
+  x.fillStyle='#c4a88a';
+  // torso
+  x.beginPath();x.moveTo(110,130);x.lineTo(210,130);x.lineTo(200,250);x.lineTo(120,250);x.closePath();x.fill();
+  // abs lines
+  x.strokeStyle='#a08060';x.lineWidth=1.5;
+  for(let i=0;i<4;i++){x.beginPath();x.moveTo(130,155+i*22);x.lineTo(190,155+i*22);x.stroke();}
+  x.beginPath();x.moveTo(160,150);x.lineTo(160,240);x.stroke();
+  // head
+  x.fillStyle='#c4a88a';
+  x.beginPath();x.arc(160,95,38,0,Math.PI*2);x.fill();
+  // hair
+  x.fillStyle='#6b8cce';
+  x.beginPath();x.moveTo(125,80);x.quadraticCurveTo(120,40,160,35);x.quadraticCurveTo(200,40,195,80);
+  x.quadraticCurveTo(185,55,160,50);x.quadraticCurveTo(135,55,125,80);x.fill();
+  // messy spikes
+  [[130,55],[145,42],[160,38],[175,42],[190,55]].forEach(([px,py])=>{
+    x.beginPath();x.moveTo(px,py);x.lineTo(px-6,py-18);x.lineTo(px+8,py-8);x.fill();
+  });
+  // face marks
+  x.fillStyle='#111';
+  x.fillRect(155,78,4,14); // cross
+  x.fillRect(148,85,18,3);
+  x.beginPath();x.ellipse(148,105,3,6,0,0,Math.PI*2);x.fill(); // tear
+  // eyes
+  x.fillStyle='#222';x.beginPath();x.arc(145,92,4,0,Math.PI*2);x.fill();
+  x.beginPath();x.arc(175,92,4,0,Math.PI*2);x.fill();
+  // mouth
+  x.strokeStyle='#333';x.lineWidth=2;x.beginPath();x.moveTo(150,112);x.lineTo(170,112);x.stroke();
+  // arms + wraps
+  x.fillStyle='#c4a88a';
+  // left arm
+  x.beginPath();x.ellipse(95,170,22,55,0.3,0,Math.PI*2);x.fill();
+  // right arm raised
+  x.beginPath();x.ellipse(225,150,22,50,-0.4,0,Math.PI*2);x.fill();
+  // wraps
+  x.fillStyle='#d0d0e0';
+  x.fillRect(75,195,40,35);x.fillRect(205,165,40,35);
+  x.strokeStyle='#aaa';x.lineWidth=2;
+  for(let i=0;i<4;i++){x.beginPath();x.moveTo(75,200+i*8);x.lineTo(115,200+i*8);x.stroke();
+    x.beginPath();x.moveTo(205,170+i*8);x.lineTo(245,170+i*8);x.stroke();}
+  // tattoos (simple)
+  x.strokeStyle='#333';x.lineWidth=1.5;
+  x.beginPath();x.arc(100,160,12,0,Math.PI*2);x.stroke(); // skull
+  x.beginPath();x.moveTo(95,155);x.lineTo(105,155);x.stroke();
+  // shorts
+  x.fillStyle='#5a5a6a';
+  x.fillRect(120,250,80,50);
+  x.strokeStyle='#444';x.beginPath();x.moveTo(160,250);x.lineTo(160,300);x.stroke();
+})();
+
+// ---------- Blindfolded Girl ----------
+(function(){
+  const c=document.getElementById('c2'),x=c.getContext('2d');
+  const W=320,H=340;
+  // bg
+  const g=x.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,'#1a0a14');g.addColorStop(1,'#0a0508');
+  x.fillStyle=g;x.fillRect(0,0,W,H);
+  // soft glow
+  x.fillStyle='rgba(180,40,60,0.08)';x.beginPath();x.arc(160,160,120,0,Math.PI*2);x.fill();
+  // hair back
+  x.fillStyle='#1a0a12';
+  x.beginPath();x.moveTo(80,80);x.quadraticCurveTo(60,200,90,310);x.lineTo(120,300);
+  x.quadraticCurveTo(100,180,110,90);x.closePath();x.fill();
+  x.beginPath();x.moveTo(240,80);x.quadraticCurveTo(260,200,230,310);x.lineTo(200,300);
+  x.quadraticCurveTo(220,180,210,90);x.closePath();x.fill();
+  // neck + shoulders
+  x.fillStyle='#e8c4b0';
+  x.beginPath();x.moveTo(130,160);x.lineTo(190,160);x.lineTo(210,220);x.lineTo(110,220);x.closePath();x.fill();
+  // head
+  x.beginPath();x.ellipse(160,110,42,48,0,0,Math.PI*2);x.fill();
+  // hair front
+  x.fillStyle='#12080e';
+  x.beginPath();x.moveTo(120,70);x.quadraticCurveTo(160,30,200,70);
+  x.quadraticCurveTo(210,100,200,130);x.quadraticCurveTo(160,90,120,130);
+  x.quadraticCurveTo(110,100,120,70);x.fill();
+  // red streaks
+  x.strokeStyle='#8b1a2b';x.lineWidth=3;
+  x.beginPath();x.moveTo(130,60);x.quadraticCurveTo(125,120,135,180);x.stroke();
+  x.beginPath();x.moveTo(185,55);x.quadraticCurveTo(195,110,190,170);x.stroke();
+  // blindfold
+  x.fillStyle='#1a0a10';
+  x.fillRect(115,95,90,22);
+  x.strokeStyle='#2a1520';x.lineWidth=1;
+  // lace pattern on blindfold
+  for(let i=0;i<6;i++){x.beginPath();x.arc(125+i*14,106,4,0,Math.PI*2);x.stroke();}
+  // lips
+  x.fillStyle='#a04050';
+  x.beginPath();x.ellipse(160,140,10,5,0,0,Math.PI*2);x.fill();
+  // choker
+  x.fillStyle='#1a0a10';
+  x.fillRect(135,158,50,14);
+  x.strokeStyle='#3a2030';x.lineWidth=1;
+  for(let i=0;i<5;i++){x.beginPath();x.arc(142+i*9,165,3,0,Math.PI*2);x.stroke();}
+  // tattoos
+  x.strokeStyle='#5a3040';x.lineWidth=1.5;
+  x.beginPath();x.moveTo(120,185);x.quadraticCurveTo(140,200,130,220);x.stroke();
+  x.beginPath();x.moveTo(200,185);x.quadraticCurveTo(180,200,190,220);x.stroke();
+  // dress top
+  x.fillStyle='#1a0a12';
+  x.beginPath();x.moveTo(110,220);x.lineTo(210,220);x.lineTo(220,300);x.lineTo(100,300);x.closePath();x.fill();
+  // blood drops
+  x.fillStyle='#6b1520';
+  x.beginPath();x.ellipse(175,148,3,5,0,0,Math.PI*2);x.fill();
+  x.beginPath();x.ellipse(195,200,4,6,0.2,0,Math.PI*2);x.fill();
+})();
+
+// ---------- Golden Bear ----------
+(function(){
+  const c=document.getElementById('c3'),x=c.getContext('2d');
+  const W=320,H=340;
+  x.fillStyle='#0a0a0c';x.fillRect(0,0,W,H);
+  // body
+  x.fillStyle='#c4a035';
+  // torso
+  x.beginPath();x.ellipse(160,200,70,85,0,0,Math.PI*2);x.fill();
+  // head
+  x.beginPath();x.ellipse(160,95,55,52,0,0,Math.PI*2);x.fill();
+  // ears
+  x.beginPath();x.ellipse(115,55,18,20,0,0,Math.PI*2);x.fill();
+  x.beginPath();x.ellipse(205,55,18,20,0,0,Math.PI*2);x.fill();
+  x.fillStyle='#a08020';
+  x.beginPath();x.ellipse(115,55,10,12,0,0,Math.PI*2);x.fill();
+  x.beginPath();x.ellipse(205,55,10,12,0,0,Math.PI*2);x.fill();
+  // snout
+  x.fillStyle='#d4b050';
+  x.beginPath();x.ellipse(160,115,28,22,0,0,Math.PI*2);x.fill();
+  // nose
+  x.fillStyle='#222';
+  x.beginPath();x.ellipse(160,108,10,7,0,0,Math.PI*2);x.fill();
+  // eyes
+  x.fillStyle='#111';
+  x.beginPath();x.arc(140,90,8,0,Math.PI*2);x.fill();
+  x.beginPath();x.arc(180,90,8,0,Math.PI*2);x.fill();
+  x.fillStyle='#333';x.beginPath();x.arc(140,90,3,0,Math.PI*2);x.fill();
+  x.beginPath();x.arc(180,90,3,0,Math.PI*2);x.fill();
+  // mouth teeth
+  x.fillStyle='#222';
+  x.beginPath();x.moveTo(140,125);x.quadraticCurveTo(160,140,180,125);x.lineTo(180,132);x.quadraticCurveTo(160,148,140,132);x.closePath();x.fill();
+  x.fillStyle='#eee';
+  for(let i=0;i<6;i++){x.fillRect(145+i*6,128,4,8);}
+  // hat
+  x.fillStyle='#5b2c8a';
+  x.fillRect(130,25,60,18);
+  x.beginPath();x.ellipse(160,25,38,10,0,0,Math.PI*2);x.fill();
+  x.fillStyle='#7d3c98';
+  x.beginPath();x.ellipse(160,22,22,8,0,0,Math.PI*2);x.fill();
+  // bowtie
+  x.fillStyle='#5b2c8a';
+  x.beginPath();x.moveTo(160,155);x.lineTo(135,145);x.lineTo(135,165);x.closePath();x.fill();
+  x.beginPath();x.moveTo(160,155);x.lineTo(185,145);x.lineTo(185,165);x.closePath();x.fill();
+  x.beginPath();x.arc(160,155,6,0,Math.PI*2);x.fill();
+  // arms
+  x.fillStyle='#c4a035';
+  x.beginPath();x.ellipse(85,200,25,55,0.5,0,Math.PI*2);x.fill();
+  x.beginPath();x.ellipse(235,200,25,55,-0.5,0,Math.PI*2);x.fill();
+  // mic
+  x.fillStyle='#333';
+  x.fillRect(55,230,8,50);
+  x.beginPath();x.arc(59,225,12,0,Math.PI*2);x.fill();
+  x.fillStyle='#888';x.beginPath();x.arc(59,225,7,0,Math.PI*2);x.fill();
+  // legs
+  x.fillStyle='#c4a035';
+  x.beginPath();x.ellipse(130,290,28,35,0,0,Math.PI*2);x.fill();
+  x.beginPath();x.ellipse(190,290,28,35,0,0,Math.PI*2);x.fill();
+  // feet
+  x.fillStyle='#a08020';
+  x.beginPath();x.ellipse(130,320,32,12,0,0,Math.PI*2);x.fill();
+  x.beginPath();x.ellipse(190,320,32,12,0,0,Math.PI*2);x.fill();
+  // wear texture
+  x.strokeStyle='rgba(0,0,0,0.15)';x.lineWidth=1;
+  for(let i=0;i<12;i++){
+    x.beginPath();x.arc(100+Math.random()*120,120+Math.random()*160,2+Math.random()*4,0,Math.PI*2);x.stroke();
+  }
+})();
+</script>
 </body>
 </html>
